@@ -4,6 +4,7 @@ package com.example.zhaoshichuan.mapper;
 import com.example.zhaoshichuan.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
