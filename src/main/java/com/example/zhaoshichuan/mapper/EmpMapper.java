@@ -1,12 +1,24 @@
 package com.example.zhaoshichuan.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.zhaoshichuan.pojo.Emp;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
 @Mapper
 public interface EmpMapper {
+
+    // @Delete("delete from emp where id = ${id}")
+    // $会将参数拼接到sql语句中，#会使用预编译的方法，并不会拼接，可防止sql注入
     @Delete("delete from emp where id = #{id}")
     public int delete(Integer id);
+
+    @Options(useGeneratedKeys = true, keyProperty = "id") //返回插入这条数据的主键id
+    @Insert("insert into emp(username,name,gender,image,job,entrydate,dept_id,create_time,update_time) " +
+            "values(#{username},#{name},#{gender},#{image},#{job},#{entrydate},#{deptId},#{createTime},#{updateTime})")
+    public void insert(Emp emp);
+
+    @Update("update emp set username=#{username},name=#{name},gender=#{gender},image=#{image}," +
+            "job=#{job},entrydate=#{entrydate},dept_id=#{deptId},update_time=#{updateTime} where id=#{id}")
+    public void update(Emp emp);
 
 }
