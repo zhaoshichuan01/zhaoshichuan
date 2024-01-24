@@ -24,7 +24,8 @@ class ZhaoshichuanApplicationTests {
 
 	@Test
 	public void testDelete(){
-		empMapper.delete(17);
+		int delete = empMapper.delete(17);
+		System.out.println(delete);
 	}
 
 

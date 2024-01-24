@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Mapper
 public interface EmpMapper {
     @Delete("delete from emp where id = #{id}")
-    public void delete(Integer id);
+    public int delete(Integer id);
 
 }
