@@ -84,4 +84,10 @@ class ZhaoshichuanApplicationTests {
         System.out.println(res);
     }
 
+    @Test
+    public void testListXml(){
+        List<Emp> res = empMapper.listXml("张", (short) 1, LocalDate.of(2010,1,1), LocalDate.of(2020,1,1));
+        System.out.println(res);
+    }
+
 }

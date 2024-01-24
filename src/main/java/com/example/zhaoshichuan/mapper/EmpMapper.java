@@ -34,5 +34,9 @@ public interface EmpMapper {
             + "entrydate between #{begin} and #{end} order by update_time desc ")
     public List<Emp> list(String name, Short gender, LocalDate begin, LocalDate end);
 
+    //xml配置
+    public List<Emp> listXml(String name, Short gender, LocalDate begin, LocalDate end);
+
+
 
 }
