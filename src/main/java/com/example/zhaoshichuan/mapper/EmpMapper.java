@@ -4,6 +4,9 @@ import com.example.zhaoshichuan.pojo.Emp;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Mapper
 public interface EmpMapper {
 
@@ -22,7 +25,14 @@ public interface EmpMapper {
     public void update(Emp emp);
 
 
-    @Select("select * from emp where id = ${id}")
+    @Select("select * from emp where id = #{id}")
     public Emp getById(Integer id);
+
+
+    //条件查询员工
+    @Select("select * from emp where name like '%${name}%' and gender = #{gender} and "
+            + "entrydate between #{begin} and #{end} order by update_time desc ")
+    public List<Emp> list(String name, Short gender, LocalDate begin, LocalDate end);
+
 
 }

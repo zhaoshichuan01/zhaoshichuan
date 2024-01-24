@@ -78,4 +78,10 @@ class ZhaoshichuanApplicationTests {
         //Emp(id=20, username=Tom2, password=123456, name=汤姆, gender=1, image=1.jpg, job=1, entrydate=2000-01-01, deptId=null, createTime=null, updateTime=null)
     }
 
+    @Test
+    public void testList(){
+        List<Emp> res = empMapper.list("张", (short) 1, LocalDate.of(2010,1,1), LocalDate.of(2020,1,1));
+        System.out.println(res);
+    }
+
 }
