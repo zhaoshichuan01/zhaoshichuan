@@ -23,10 +23,6 @@ class ZhaoshichuanApplicationTests {
     UserMapper userMapper;
 
     @Test
-    public void contextLoads() {
-    }
-
-    @Test
     public void testDelete() {
         int delete = empMapper.delete(17);
         System.out.println(delete);
@@ -53,6 +49,7 @@ class ZhaoshichuanApplicationTests {
         emp.setUpdateTime(LocalDateTime.now());
         emp.setDeptId(1);
         empMapper.insert(emp);
+        // 返回主键id
         System.out.println(emp.getId());
     }
 
@@ -71,6 +68,14 @@ class ZhaoshichuanApplicationTests {
         emp.setDeptId(1);
         empMapper.update(emp);
 
+    }
+
+    @Test
+    public void testSelectById(){
+        Emp emp =  empMapper.getById(20);
+        System.out.println(emp);
+        //mybatis机制：实体类的属性名与表中的字段名不一致，则会返回null，可使用@Result注解或者开启mybatis的驼峰命名自动映射开关
+        //Emp(id=20, username=Tom2, password=123456, name=汤姆, gender=1, image=1.jpg, job=1, entrydate=2000-01-01, deptId=null, createTime=null, updateTime=null)
     }
 
 }

@@ -21,4 +21,8 @@ public interface EmpMapper {
             "job=#{job},entrydate=#{entrydate},dept_id=#{deptId},update_time=#{updateTime} where id=#{id}")
     public void update(Emp emp);
 
+
+    @Select("select * from emp where id = ${id}")
+    public Emp getById(Integer id);
+
 }
