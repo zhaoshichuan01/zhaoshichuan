@@ -38,5 +38,9 @@ public interface EmpMapper {
     public List<Emp> listXml(String name, Short gender, LocalDate begin, LocalDate end);
 
 
+    //动态更新
+    public void update2(Emp emp);
+
+
 
 }

@@ -91,4 +91,12 @@ class ZhaoshichuanApplicationTests {
         System.out.println(res);
     }
 
+    @Test
+    public void testUpdateXml(){
+        Emp emp = new Emp();
+        emp.setId(20);
+        emp.setName("汤姆11");
+        empMapper.update2(emp);
+    }
+
 }
