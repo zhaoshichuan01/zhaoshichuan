@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -99,4 +101,10 @@ class ZhaoshichuanApplicationTests {
         empMapper.update2(emp);
     }
 
+
+    @Test
+    public void testUDeleteXml(){
+       List<Integer> ids = Arrays.asList(16,17,18);
+        empMapper.batchDeleteById(ids);
+    }
 }

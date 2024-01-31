@@ -42,5 +42,5 @@ public interface EmpMapper {
     public void update2(Emp emp);
 
 
-
+    public void batchDeleteById(List<Integer> ids);
 }
