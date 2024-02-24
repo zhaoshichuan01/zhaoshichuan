@@ -20,6 +20,7 @@ public class HelloController {
         return "zhaoshichuan";
     }
 
+
     @GetMapping("/hello1")
     public String hello1(){
         String res =  query.list();
