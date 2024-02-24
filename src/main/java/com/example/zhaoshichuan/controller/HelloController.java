@@ -14,6 +14,7 @@ public class HelloController {
     @Autowired
     query query;
 
+
     @GetMapping("/hello")
     public String hello(){
         return "zhaoshichuan";
