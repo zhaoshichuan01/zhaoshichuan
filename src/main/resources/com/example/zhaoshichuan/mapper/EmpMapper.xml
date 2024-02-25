@@ -47,4 +47,20 @@
         order by update_time desc
     </select>
 
+    <select id="listEmp" resultType="com.example.zhaoshichuan.pojo.Emp">
+        <include refid="empColumns"/>
+        <where>
+            <if test="name != null and name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="gender != null and gender != ''">
+                and gender = #{gender}
+            </if>
+            <if test="begin != null and end != null">
+                and entrydate between #{begin} and #{end}
+            </if>
+        </where>
+        order by update_time desc limit #{page},#{pageSize}
+    </select>
+
 </mapper>

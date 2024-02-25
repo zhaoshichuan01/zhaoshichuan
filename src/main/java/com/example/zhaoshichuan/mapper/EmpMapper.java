@@ -56,4 +56,6 @@ public interface EmpMapper {
     @Select("select * from emp limit #{start},#{pageSize}")
     public List<Emp> page(Integer start, Integer pageSize);
 
+    public List<Emp> listEmp(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end);
+
 }
