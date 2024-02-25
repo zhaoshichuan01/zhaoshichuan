@@ -5,9 +5,7 @@ import com.example.zhaoshichuan.pojo.Result;
 import com.example.zhaoshichuan.service.DeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -26,8 +24,22 @@ public class DeptController {
     private DeptService deptService;
     @RequestMapping(value = "/depts", method = RequestMethod.GET) // 指定请求方式是GET
     public Result list(){
-        log.info("\n====查询全部部分数据===");
+        log.info("\n====查询全部部门数据===");
         List<Dept> deptList =  deptService.list();
         return Result.success(deptList);
+    }
+
+    @DeleteMapping("depts/{id}")
+    public Result delete(@PathVariable Integer id) {
+        log.info("\n====根据id删除部门数据，id：{}===",id);
+        deptService.deleteById(id);
+        return Result.success();
+    }
+
+    @PostMapping("depts")
+    public  Result add(@RequestBody Dept dept) {
+        log.info("\n====新增部门数据:{}===",dept);
+        deptService.add(dept);
+        return Result.success();
     }
 }
