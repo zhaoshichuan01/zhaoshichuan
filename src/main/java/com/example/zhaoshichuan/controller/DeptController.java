@@ -22,6 +22,7 @@ public class DeptController {
 
     @Autowired
     private DeptService deptService;
+
     @RequestMapping(value = "/depts", method = RequestMethod.GET) // 指定请求方式是GET
     public Result list(){
         log.info("\n====查询全部部门数据===");
