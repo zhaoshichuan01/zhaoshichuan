@@ -43,4 +43,17 @@ public interface EmpMapper {
 
 
     public void batchDeleteById(List<Integer> ids);
+
+    /**
+     * 获取员工总记录数
+     * */
+    @Select("select count(*) from emp")
+    public Long count();
+
+    /**
+     *分页查询，获取列表数据
+     * */
+    @Select("select * from emp limit #{start},#{pageSize}")
+    public List<Emp> page(Integer start, Integer pageSize);
+
 }
