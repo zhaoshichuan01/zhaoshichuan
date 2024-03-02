@@ -23,21 +23,29 @@ public class DeptController {
     @Autowired
     private DeptService deptService;
 
-    @RequestMapping(value = "/depts", method = RequestMethod.GET) // 指定请求方式是GET
+    // @RequestMapping(value = "/depts", method = RequestMethod.GET) // 指定请求方式是GET
+    @GetMapping("/depts")
     public Result list(){
         log.info("\n====查询全部部门数据===");
         List<Dept> deptList =  deptService.list();
         return Result.success(deptList);
     }
 
-    @DeleteMapping("depts/{id}")
+    @GetMapping("/depts/getByid")
+    public Result get(@RequestParam Integer deptId) {
+        log.info("\n====根据id查询部门数据，id：{}===",deptId);
+        Dept dept = deptService.getById(deptId);
+        return Result.success(dept);
+    }
+
+    @DeleteMapping("/depts/{id}")
     public Result delete(@PathVariable Integer id) {
         log.info("\n====根据id删除部门数据，id：{}===",id);
         deptService.deleteById(id);
         return Result.success();
     }
 
-    @PostMapping("depts")
+    @PostMapping("/depts")
     public  Result add(@RequestBody Dept dept) {
         log.info("\n====新增部门数据:{}===",dept);
         deptService.add(dept);
