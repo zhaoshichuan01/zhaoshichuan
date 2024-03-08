@@ -86,3 +86,49 @@ public class lianxi {
 // Tomcat的作用: https://blog.csdn.net/xianyu_x/article/details/122278652
 
 // Web应用服务器——Tomcat的介绍、下载安装、环境配置与使用 : https://blog.csdn.net/weixin_44222492/article/details/98879736
+
+/**
+内存泄漏（Memory Leak）：内存泄漏是指程序中已经分配的内存没有被程序释放，导致这部分内存无法被再次使用。
+        在Java中，内存泄漏通常发生在长生命周期的对象持有短生命周期对象的引用，而短生命周期的对象生命周期结束后，
+        长生命周期的对象仍然持有其引用，导致短生命周期的对象无法被垃圾回收器回收。例如：
+
+import java.util.Vector;
+public class MemoryLeakExample {
+    private Vector v = new Vector(10);
+
+    public void memoryLeak() {
+        for (int i = 1; i < 100; i++) {
+            Object o = new Object();
+            v.add(o);
+            o = null;
+        }
+    }
+}
+在上述代码中，虽然我们将o设置为null，但是o的引用仍然被Vector对象v持有，因此这部分内存无法被回收，导致内存泄漏。
+
+内存溢出（Memory Overflow/Out of Memory）：内存溢出是指程序在运行过程中，需要的内存超过了剩余的内存，导致无法分配内存，从而引发错误。
+例如：
+import java.util.Vector;
+public class OutOfMemoryExample {
+    private Vector v = new Vector(10);
+
+    public void outOfMemory() {
+        for (int i = 1; i < Integer.MAX_VALUE; i++) {
+            byte[] b = new byte[1048576]; // 分配1MB的内存
+            v.add(b);
+        }
+    }
+}
+ */
+
+// jvm.fullgc.count 是一个监控指标，用于记录Java虚拟机（JVM）进行Full GC（全局垃圾收集）的次数。
+// Full GC是JVM垃圾收集器在内存不足时，对整个堆进行清理的过程，包括Young Generation和Old Generation。
+// 这个过程通常会暂停所有的应用线程，所以如果Full GC发生的次数过多，可能会影响到应用的性能。
+
+// jvm.gc.count 是一个监控指标，用于记录Java虚拟机（JVM）进行垃圾收集（GC）的次数。
+// 垃圾收集是JVM自动管理内存的一种机制，它会自动回收不再使用的对象占用的内存。
+// 这个指标可以帮助我们了解垃圾收集的频率，如果垃圾收集发生的次数过多，可能会影响到应用的性能，
+// 因为垃圾收集过程中可能会暂停应用的运行。因此，如果jvm.gc.count的值过高，
+// 可能需要调查是否有内存泄漏的问题，或者是否需要调整JVM的内存设置。
+
+
