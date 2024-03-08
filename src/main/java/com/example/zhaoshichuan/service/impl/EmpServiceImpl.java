@@ -24,4 +24,9 @@ public class EmpServiceImpl implements EmpService {
         List<Emp> rows = empMapper.listEmp((page-1)*pageSize, pageSize, name, gender, begin, end);
         return new PageBean(total,rows);
     }
+
+    @Override
+    public void delete(List<Integer> ids) {
+        empMapper.deleteBatch(ids);
+    }
 }

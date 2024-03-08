@@ -30,6 +30,13 @@
             #{id}
         </foreach>
     </delete>
+    <!-- 批量删除   -->
+    <delete id="deleteBatch">
+        delete from emp where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
     <select id="listXml" resultType="com.example.zhaoshichuan.pojo.Emp">
         <include refid="empColumns"/>
