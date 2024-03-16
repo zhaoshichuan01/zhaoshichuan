@@ -59,4 +59,7 @@ public interface EmpMapper {
     public List<Emp> listEmp(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end);
 
     void deleteBatch(List<Integer> ids);
+
+    @Select("select * from emp where username = #{name}")
+    Emp getEmpByNameAndPwd(String name, String pwd);
 }
