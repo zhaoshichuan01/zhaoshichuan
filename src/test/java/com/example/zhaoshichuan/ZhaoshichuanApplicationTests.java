@@ -4,6 +4,9 @@ import com.example.zhaoshichuan.mapper.EmpMapper;
 import com.example.zhaoshichuan.mapper.UserMapper;
 import com.example.zhaoshichuan.pojo.Emp;
 import com.example.zhaoshichuan.pojo.User;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.ibatis.annotations.Options;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -12,9 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SpringBootTest
 class ZhaoshichuanApplicationTests {
@@ -106,5 +107,33 @@ class ZhaoshichuanApplicationTests {
     public void testUDeleteXml(){
        List<Integer> ids = Arrays.asList(16,17,18);
         empMapper.batchDeleteById(ids);
+    }
+
+    /**
+     * 审生成jwt 令牌，基于base64编码： https://www.jyshare.com/front-end/693/
+     * */
+    @Test
+    public void testGenToken(){
+        Map<String,Object> claim = new HashMap<>();
+        claim.put("id",1);
+        claim.put("name","tom");
+        String jwt =  Jwts.builder()
+                .signWith(SignatureAlgorithm.HS256, "itheima") //签名算法
+                .setClaims(claim)  //载荷,自定义部分
+                .setExpiration(new Date(System.currentTimeMillis() + 3600 * 1000)) // 令牌有效期1小时
+                .compact();
+        System.out.println(jwt);
+    }
+
+    /**
+     * 解析Jwt令牌
+     * */
+    @Test
+    public void testParseJwt(){
+        Claims claim =  Jwts.parser()
+                .setSigningKey("itheima")
+                .parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidG9tIiwiaWQiOjEsImV4cCI6MTcxMDY1MjA0Mn0.DbynlMLz1NJYXYIz8_omUtODVLWjApzY44mtwKl4--Q")
+                .getBody();
+        System.out.println(claim);
     }
 }
