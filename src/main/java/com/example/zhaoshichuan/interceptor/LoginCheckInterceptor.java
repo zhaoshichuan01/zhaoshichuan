@@ -1,35 +1,33 @@
-package com.example.zhaoshichuan.filter;
+package com.example.zhaoshichuan.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.zhaoshichuan.pojo.Result;
 import com.example.zhaoshichuan.util.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.net.URL;
 
-//@WebFilter(urlPatterns = "/*")
+@Component
 @Slf4j
-public class LoginCheckFilter implements Filter {
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+public class LoginCheckInterceptor implements HandlerInterceptor {
 
+    @Override //日标资源方法(也就是Controller)运行前运行，返回true: 放行，放回false，不放行
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("preHandle...");
         // 获取请求的url
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
+        HttpServletRequest req = request;
+        HttpServletResponse resp = response;
         String url = req.getRequestURI();
         log.info("请求的url:{}", url);
 
         // 排除掉login请求，因为登录不拦截
         if (url.contains("login")){
-            log.info("登录请求，放行");
-            chain.doFilter(request, response);
-            return;
+            return true;
         }
 
         // 获取请头中的token
@@ -41,7 +39,7 @@ public class LoginCheckFilter implements Filter {
             Result error = Result.error("NOT_LOGIN");
             String notLogin = JSONObject.toJSONString(error);
             resp.getWriter().write(notLogin);
-            return;
+            return false;
         }
 
         // 解析token，如果解析失败，返回未登录状态
@@ -52,10 +50,19 @@ public class LoginCheckFilter implements Filter {
             Result error = Result.error("NOT_LOGIN");
             String notLogin = JSONObject.toJSONString(error);
             resp.getWriter().write(notLogin);
-            return;
+            return false;
         }
         log.info("令牌有效，放行");
-        chain.doFilter(request, response);
+        return true;
+    }
 
+    @Override //标资源方法运行后运行
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("postHandle...");
+    }
+
+    @Override //视图渲染完毕后运行，最后运行
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("afterCompletion...");
     }
 }
