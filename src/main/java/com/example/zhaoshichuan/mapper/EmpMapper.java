@@ -63,6 +63,6 @@ public interface EmpMapper {
     @Select("select * from emp where username = #{name}")
     Emp getEmpByNameAndPwd(String name, String pwd);
 
-    @Delete("delete from emp where demp_id = #{id}")
+    @Delete("delete from emp where dept_id = #{id}")
     void deleteByDempId(Integer id);
 }
