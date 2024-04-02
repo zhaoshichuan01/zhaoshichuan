@@ -52,6 +52,11 @@
 			<version>2.3.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!--AOP-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 
 		<!--druid连接池-->
 		<dependency>
