@@ -1,6 +1,7 @@
 package com.example.zhaoshichuan.service.impl;
 
 
+import com.example.zhaoshichuan.aop.MyLog;
 import com.example.zhaoshichuan.mapper.DeptMapper;
 import com.example.zhaoshichuan.mapper.EmpMapper;
 import com.example.zhaoshichuan.pojo.Dept;
@@ -61,6 +62,7 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
+    @MyLog
     public Dept getById(Integer id) {
         Dept res =  deptMapper.getById(id);
         return res;
