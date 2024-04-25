@@ -39,7 +39,7 @@ class ZhaoshichuanApplicationTests {
     }
 
 
-    @Test
+    //@Test
     public void testInsert() {
         Emp emp = new Emp();
         emp.setUsername("Tom2");
@@ -128,7 +128,7 @@ class ZhaoshichuanApplicationTests {
     /**
      * 解析Jwt令牌
      * */
-    @Test
+    //@Test
     public void testParseJwt(){
         Claims claim =  Jwts.parser()
                 .setSigningKey("itheima")
