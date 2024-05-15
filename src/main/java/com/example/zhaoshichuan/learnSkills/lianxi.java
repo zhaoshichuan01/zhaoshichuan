@@ -1,4 +1,4 @@
-package com.example.zhaoshichuan;
+package com.example.zhaoshichuan.learnSkills;
 
 import java.util.*;
 
