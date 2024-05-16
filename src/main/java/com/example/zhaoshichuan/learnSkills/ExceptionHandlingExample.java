@@ -30,6 +30,7 @@ public class ExceptionHandlingExample {
     public static void main(String[] args) {
         // 执行调用方法
         callingMethod();
+        System.out.println("Main method continues execution...");
 
         // 主方法继续执行，但此时程序可能处于一个不一致的状态
         // 因为 methodThatMightThrowException 中的异常被静默处理了
