@@ -1,5 +1,6 @@
 package com.example.zhaoshichuan;
 
+import com.example.zhaoshichuan.learnSkills.MyLogTest;
 import com.example.zhaoshichuan.mapper.EmpMapper;
 import com.example.zhaoshichuan.mapper.UserMapper;
 import com.example.zhaoshichuan.pojo.Emp;
@@ -24,6 +25,9 @@ class ZhaoshichuanApplicationTests {
     EmpMapper empMapper;
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    MyLogTest myLogTest;
 
     @Test
     public void testDelete() {
@@ -136,4 +140,10 @@ class ZhaoshichuanApplicationTests {
                 .getBody();
         System.out.println(claim);
     }
+
+    @Test
+    public void testLog() throws InterruptedException {
+        myLogTest.testTime();
+    }
+
 }
