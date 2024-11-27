@@ -146,4 +146,11 @@ class ZhaoshichuanApplicationTests {
         myLogTest.testTime();
     }
 
+    @Test
+    public void testLog1() throws InterruptedException {
+       List<Object> aa = new ArrayList<>();
+       aa.add(new ArrayList<>());
+       System.out.println(aa.toString());
+    }
+
 }
