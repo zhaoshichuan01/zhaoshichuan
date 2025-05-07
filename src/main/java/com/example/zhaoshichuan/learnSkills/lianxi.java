@@ -132,3 +132,31 @@ public class OutOfMemoryExample {
 // 可能需要调查是否有内存泄漏的问题，或者是否需要调整JVM的内存设置。
 
 
+
+
+
+// 基本数据类型：
+// 布尔型：Boolean
+// 数型：byte1 short 2.int 4.long8
+// 字符型：char
+// 浮点型：float double
+
+// 引用数据类型：数组、接口、类，String
+
+// 八种基本类型都有自己对应的包装类，分别为：
+// 布尔类型：Boolean
+// 字符类型：Character
+// 整数类型：Byte、Short、Integer、Long
+// 浮点类型：Float、Double
+
+
+// java.util.Arrays: https://blog.csdn.net/zch981964/article/details/130785726
+
+// 如何查看Java和Javac版本？
+// 在cmd中输入
+// java -version //查看Java版本
+// javac -version //查看Javac版本
+
+// Java--Java版本和JDK版本   https://blog.csdn.net/MinggeQingchun/article/details/120578602
+
+
