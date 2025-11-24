@@ -1,8 +1,0 @@
-#tomcat端口
-#server:
-#  port: 9000
-
-#spring事务管理日志
-logging:
-  level:
-    org.springframework.jdbc.support.JdbcTransactionManager: debug
