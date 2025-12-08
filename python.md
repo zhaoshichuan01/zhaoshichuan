@@ -24,10 +24,11 @@ poetry run python 脚本.py
 ```bash
 cd /你的项目路径
 python3 -m venv venv
+激活虚拟环境:
 source venv/bin/activate  # macOS/Linux
 # venv\Scripts\activate   # Windows
 pip install 包名
-deactivate
+deactivate 退出虚拟环境
 ```
 
 #### 3. Conda（数据科学常用）
