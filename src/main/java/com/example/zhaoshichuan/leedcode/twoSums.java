@@ -1,8 +1,6 @@
 package com.example.zhaoshichuan.leedcode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class twoSums {
     // https://leetcode-cn.com/problems/two-sum/
@@ -34,6 +32,10 @@ public class twoSums {
     public static void main(String[] args) {
         twoSums twoSums = new twoSums();
         System.out.println(Arrays.toString(twoSums.twoSum2(new int[]{2,1,7,15}, 9)));
+        List<String> a = new ArrayList<>();
+        List<String> b = Arrays.asList("1", "2", "3");
+        b.add("4"); // Arrays.asList("1", "2", "3") 返回的是 Arrays 类内部的一个固定大小的 ArrayList 实现，这个实现继承自 AbstractList，其 add 和 remove 方法默认抛出 UnsupportedOperationException 异常。
+
     }
 
 }
